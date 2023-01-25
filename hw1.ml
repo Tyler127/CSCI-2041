@@ -38,3 +38,5 @@ let rec count_factors_helper x y =
     else count_factors_helper x (y - 1)
 
 let count_factors x = let y = x in count_factors_helper x y 
+
+let test = count_factors 3
