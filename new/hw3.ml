@@ -1,3 +1,5 @@
+(** @author Tyler Larson (lars6653) *)
+
 (* In-Lab Tasks *)
 (** [increment list] is the given [list] of ints with each element increased by 1. *)
 let rec increment list = 
