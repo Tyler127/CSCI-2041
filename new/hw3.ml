@@ -16,7 +16,7 @@ let rec lengths list =
 let rec times_list x list =
   match list with
   | [] -> []
-  | h :: t -> h * x :: times_lists x t
+  | h :: t -> h * x :: times_list x t
 
 (** [product list] is the product of all elements in [list]. *)
 let rec product list =
