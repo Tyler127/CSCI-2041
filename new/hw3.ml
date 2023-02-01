@@ -1,6 +1,5 @@
 (** @author Tyler Larson (lars6653) *)
 
-(* In-Lab Tasks *)
 (** [increment list] is the given [list] of ints with each element increased by 1. *)
 let rec increment list = 
   match list with
@@ -14,7 +13,7 @@ let rec lengths list =
   | h :: t -> List.length h :: lengths t
  
 (** [times_lists x list] is a list of each element of [list] multiplied by [x]. *)
-let rec times_lists x list =
+let rec times_list x list =
   match list with
   | [] -> []
   | h :: t -> h * x :: times_lists x t
@@ -72,7 +71,6 @@ let rec skip_skips list =
     | "skip" -> skip_skips t
     | _ -> h :: skip_skips t
 
-(* Individual Tasks: *)
 (** [get_prefix_eq_int num list] is a list that contains only [num] 
     for the amount of times it occurs consecutively at the beginning of [list]. *)
 let rec get_prefix_eq_int num list =
@@ -101,8 +99,9 @@ let rec make_list_x_ntimes x n =
   else
     []
 
-(** [group_eq_helper acc holder list] counts the amount of consecutive occurances of equal elements
-  using [acc] then when a differing element occurs, creates a list of [acc] elements of [holder]. 
+(** [group_eq_helper acc holder list] counts the amount of 
+  consecutive occurances of equal elements using [acc] then when 
+  a differing element occurs, creates a list of [acc] elements of [holder]. 
   Recursively calls until [list] is empty. *)
 let rec group_eq_helper acc holder list =
   match list with
@@ -116,11 +115,18 @@ let rec group_eq_helper acc holder list =
       else make_list_x_ntimes holder acc :: group_eq_helper 1 h t
 
 (** [group_eq list] creates a list in which equal consecutive items of [list] 
-    are group togethered in sublists. *)
+    are grouped together in sublists. *)
 let rec group_eq list = 
   match list with
   | [] -> []
   | h :: t -> group_eq_helper 1 h t  
+
+(** [group_eq_int list] creates a list in which equal consecutive ints of [list]
+    are grouped together in sublists. *)
+let rec group_eq_int list = 
+  match list with
+  | [] -> []
+  | h :: t -> group_eq_helper 1 h t
 
 (* Tests: *)
 (* let k = get_prefix_eq_int 1 [1;1;3;4;1]
