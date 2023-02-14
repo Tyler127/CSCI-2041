@@ -81,7 +81,6 @@ let rec get_prefix_eq_int num list =
       | true -> h :: get_prefix_eq_int num t
       | false -> []
 
-
 (** [drop_prefix_eq_int num list] is a list that contains all remaining elements
     after removing all consecutive occurances of [num] from the beginning of [list]. *)
 let rec drop_prefix_eq_int num list = 
