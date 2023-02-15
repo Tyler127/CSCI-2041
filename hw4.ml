@@ -77,12 +77,7 @@ let rec map_tree f tree =
   | Node (element, left, right) -> Node (f element, (map_tree f left), (map_tree f right))
 
 (* G *)
-let for_all_tree f tree = 
-  match tree with
-  | Leaf -> false
-  | Node (element, left, right) -> fold_tree true (fun _ left right -> (f left) && (f right)) tree
-
-let test_for_all_tree = run_fold (fun x -> x > 0) (Node (100, Leaf, Leaf))
+let for_all_tree f tree = fold_tree true (fun x left right -> f x && left && right) tree
 
 
 
@@ -102,7 +97,9 @@ let test_exists_tree3 = exists_tree (function Some _ -> true | None -> false) (N
 let test_fold_tree = fold_tree 0 (fun x left right -> x + left + right) (Node (3, Node (2, Node (1, Leaf, Leaf), Leaf), Node (4, Leaf, Leaf)))
 let test_fold_tree2 = fold_tree 1 (fun _ left right -> left + right) (Node (3, Node (2, Node (1, Leaf, Leaf), Leaf), Node (4, Leaf, Leaf))) 
 
-let test_map_tree = 2*)
+let test_for_all_tree = for_all_tree (fun x -> x > 0) (Node (100, Leaf, Leaf))
+let test_for_all_tree2 = for_all_tree (fun x -> x mod 2 = 0) Leaf
+let test_for_all_tree3 = for_all_tree (function Some _ -> true | None -> false) (Node (Some 1, Node (None, Leaf, Leaf), Leaf)) *)
 
 
 (* A Tests *)
