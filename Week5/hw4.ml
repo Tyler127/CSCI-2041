@@ -1,23 +1,30 @@
+(** @author Tyler Larson (lars6653) *)
+
 (* A *)
 (** [increment list] is the given [list] of ints with each element increased by 1. *)
 let increment list = 
   List.map (fun x -> x + 1) list
 
+
 (** [lengths list] is a list of the lengths of each list in [list]. *)
 let lengths list =
   List.map (fun x -> List.length x) list
  
+
 (** [times_lists x list] is a list of each element of [list] multiplied by [num]. *)
 let times_list num list =
   List.map (fun x -> x * num) list
  
+
 (** [product list] is the product of all elements in [list]. *)
 let product list =
   List.fold_left (fun x y -> x * y) 1 list 
 
+
 (** [print_it list] prints each element of [list] to a new line. *)
 let print_it list = 
-  List.map (fun x -> print_endline (x ^ " it")) list
+  List.iter (fun x -> print_endline (x ^ " it")) list
+
 
 (** [intercalate sep list] separates each element of [list] with [sep].
     Ignores empty strings.  *)
@@ -26,29 +33,38 @@ let intercalate sep list =
   | [] -> ""
   | h :: t -> List.fold_left (fun x y -> x ^ sep ^ y) h t
 
+
 (** [nonempty list] is all nonempty lists in [list] in the same order. *)
 let nonempty list = 
   List.filter (fun x -> if x = [] then false else true) list
 
+
 (** [odds list] is a list of all odd numbers in [list]. *)
 let rec odds list = 
   List.filter (fun x -> if x mod 2 == 0 then false else true) list
+
 
 (** [skip_skips list] is all strings in [list] excluding any strings
     that equal "skip". *)
 let rec skip_skips list = 
   List.filter (fun x -> if x = "skip" then false else true) list
 
+
 (* B *)
+(** *)
 type 'a tree = Leaf | Node of 'a * 'a tree * 'a tree
 
+
 (* C *)
+(** [flip tree] is [tree] with each set of left and right nodes swapped. *)
 let rec flip tree  = 
   match tree with 
   | Leaf -> Leaf
   | Node (element, left, right) -> Node (element, flip right, flip left)
 
+
 (* D.1 *)
+(** [rightmost tree] is the farthest right element in [tree]. *)
 let rec rightmost tree = 
   match tree with
   | Leaf -> None 
@@ -56,7 +72,10 @@ let rec rightmost tree =
     if right == Leaf then Some element
     else rightmost right
 
+
 (* D.2 *)
+(** [exists_tree f tree] is true if a node in [tree] satisfies [f] and
+    false if no node in [tree] satisfies [f]. *)
 let rec exists_tree f tree = 
   match tree with 
   | Leaf -> false
@@ -64,20 +83,30 @@ let rec exists_tree f tree =
     if f element == true then true
     else exists_tree f left || exists_tree f right
 
+
 (* E *)
+(** [fold_tree init f tree] is [tree] folded using [f]. *)
 let rec fold_tree init f tree = 
   match tree with 
   | Leaf -> init
-  | Node (element, left, right) -> f element (fold_tree init f left) (fold_tree init f right)
+  | Node (element, left, right) -> 
+    f element (fold_tree init f left) (fold_tree init f right)
+
 
 (* F *)
+(** [map_tree f tree] is [f] applied to each node in [tree]. *)
 let rec map_tree f tree =
   match tree with
   | Leaf -> Leaf
-  | Node (element, left, right) -> Node (f element, (map_tree f left), (map_tree f right))
+  | Node (element, left, right) -> 
+    Node (f element, (map_tree f left), (map_tree f right))
+
 
 (* G *)
-let for_all_tree f tree = fold_tree true (fun x left right -> f x && left && right) tree
+(** [for_all_tree] is true if and only if [f] applied to each node in [tree]
+    is true. Otherwise, is false. *)
+let for_all_tree f tree = 
+  fold_tree true (fun x left right -> f x && left && right) tree
 
 
 
