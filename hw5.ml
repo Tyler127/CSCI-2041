@@ -12,23 +12,22 @@ sig
   (** [equal x y] tests whether [x] is equal to [y]. *)
   val equal : t -> t -> bool
 
-  (** 👉 Document it *)
+  (** [less_than x y] is true if [x < y]. Otherwise false. *)
   val less_than : t -> t -> bool
   
-  (** 👉 Document it *)
+  (** [neg x] is the negation of [x]. *)
   val neg : t -> t
 
   (** [add x y] is the addition [x + y]. *)
   val add : t -> t -> t
 
-  (** 👉 Document it *)
+  (** [sub x y] is the subtraction [x - y]. *)
   val sub : t -> t -> t
 
-  (** 👉 Document it *)
+  (** [mul x y] is the multiplication [x * y]. *)
   val mul : t -> t -> t
 
   (** [div x y] is the division [x / y]. 
-
       @raise Division_by_zero when if [y] is zero. *)
   val div : t -> t -> t
 
@@ -84,7 +83,7 @@ struct
     if fst y = 0 || snd y = 0 || snd x = 0 then raise Division_by_zero 
     else ((fst x * snd y), (snd x * fst y))
 
-  let rec gcd x y = if y = 0 then x else gcd y (x mod y)
+  let rec gcd x y = if y = 0 then (abs x) else gcd (abs y) ((abs x) mod (abs y))
 
   let to_pair x = let gcd' = gcd (fst x) (snd x) in (fst x / gcd', snd x / gcd')
 
@@ -107,7 +106,7 @@ let test_equal2 = Rational.equal f12 f13
 let test_less_than = Rational.less_than f12 f34
 let test_less_than2 = Rational.less_than f34 f12
 let test_neg = Rational.neg f11
-let test_neg2 = Rational.to_pair (Rational.neg f)
+let test_neg2 = Rational.to_pair (Rational.neg f13)
 let test_add = Rational.add f12 f12
 let test_add2 = Rational.add f34 f34
 let test_sub = Rational.sub f11 f12

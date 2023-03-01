@@ -71,28 +71,28 @@ let test_reverse = Tree.reverse t *)
 
 module type ListSignature =
 sig
-  (** 👉 Document it *)
+  (** The type of a list. *)
   type 'a t = 'a list
 
-  (** 👉 Document it *)
+  (** [empty] is []. *)
   val empty : 'a t
 
-  (** 👉 Document it *)
+  (** [singleton 'a] is a list only containing ['a]. *)
   val singleton : 'a -> 'a t
 
-  (** 👉 Document it *)
+  (** [size t] returns the size of [t]. *)
   val size : 'a t -> int
 
-  (** 👉 Document it *)
+  (** [leftmost t] returns the farthest left item in [t]. *)
   val leftmost : 'a t -> 'a option
 
-  (** 👉 Document it *)
+  (** [rightmost t] returns the farthest right item in [t]. *)
   val rightmost : 'a t -> 'a option
 
-  (** 👉 Document it *)
+  (** [reverse t] reverses the order of [t]. *)
   val reverse : 'a t -> 'a t
 
-  (** 👉 Document it *)
+  (** [map] is the given function applied to each element of [t]. *)
   val map : ('a -> 'b) -> 'a t -> 'b t
 end
 
@@ -151,22 +151,22 @@ sig
   (** [empty] is an empty sequence. *)
   val empty : 'a t
 
-  (** 👉 Document it *)
+  (** [singleton 'a] is a sequence containing only ['a]. *)
   val singleton : 'a -> 'a t
 
-  (** 👉 Document it *)
+  (** [size t] returns the size of [t]. *)
   val size : 'a t -> int
 
-  (** 👉 Document it *)
+  (** [leftmost t] returns the farthest left item in [t]. *)
   val leftmost : 'a t -> 'a option
 
-  (** 👉 Document it *)
+  (** [rightmost t] returns the farthest right item in [t]. *)
   val rightmost : 'a t -> 'a option
 
-  (** 👉 Document it *)
+  (** [reverse t] reverses the order of [t]. *)
   val reverse : 'a t -> 'a t
 
-  (** 👉 Document it *)
+  (** [map] is the given function applied to each element of [t]. *)
   val map : ('a -> 'b) -> 'a t -> 'b t
 
   (* 👉 Fill out the content of [Sequence] such that
